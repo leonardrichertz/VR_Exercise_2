@@ -14,11 +14,12 @@ Spielablauf
 
 1. Das Spiel beginnt mit dem Hauptmenü 
 2. Nach dem Start erscheinen Bäume in der Spielwelt 
-3. Der Spieler zeigt mit dem VR-Controller auf einen Baum 
-4. Der Vogel fliegt zum ausgewählten Baum 
-5. Wenn der Vogel den Baum erreicht, bevor dieser verschwindet, erhält der Spieler Punkte 
-6. Bäume wachsen, altern und verschwinden mit der Zeit 
-7. Nach Ablauf der Spielzeit wird der Endpunktestand angezeigt 
+3. Der Spieler zeigt mit dem VR-Controller auf einen Baum. Durch Drücken der hinteren Taste am rechten Controller wird ein Zeigestrahlt mit begrenzter Länge genutzt, um einen Baum auszuwählen. Aufgrund der begrenzten Reichweite des Strahls muss der Benutzer sich durch das Spielfeld bewegen.
+4. Ein ausgewählter Baum wird blau.
+5. Der Vogel fliegt zum ausgewählten Baum 
+6. Wenn der Vogel den Baum erreicht, bevor dieser verschwindet, erhält der Spieler Punkte 
+7. Bäume wachsen, altern und verschwinden mit der Zeit 
+8. Nach Ablauf der Spielzeit wird der Endpunktestand angezeigt 
 
 
 Spiellogik
@@ -32,12 +33,12 @@ Der Vogel
     bewegt sich zum ausgewählten Baum
     kreist um den Baum, wenn er ihn erreicht hat
 
-Es ermöglicht das Umschalten zwischen verschiedenen Kameraansichten (Aufgabeteil G):
+Das Drücken der Leertaste ermöglicht das Umschalten zwischen verschiedenen Kameraansichten (Aufgabeteil G):
     Erste-Person-Perspektive
     Dritte-Person-Perspektive
     Vogelperspektive
 
-Punkten
+Punkte
     erhöhen sich, wenn der Vogel einen Baum rechtzeitig erreicht
     verringern sich, wenn ein Baum verschwindet, bevor der Vogel ihn erreicht
 
