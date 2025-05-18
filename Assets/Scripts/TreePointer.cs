@@ -12,7 +12,6 @@ public class TreePointer : MonoBehaviour
     [SerializeField] private LineRenderer pointerLine;
     [SerializeField] private BirdMovementH birdPath;
     
-    private bool isPointing = false;
     private GameObject pointedTree = null;
     private List<InputDevice> devices = new List<InputDevice>();
     private InputDevice targetDevice;
@@ -60,10 +59,10 @@ public class TreePointer : MonoBehaviour
             {
                 pointerLine.enabled = false;
             }
-            isPointing = false;
         }
     }
-    
+
+    // Get the device
     private void GetDevice()
     {
         InputDevices.GetDevicesAtXRNode(controllerNode, devices);
@@ -124,7 +123,6 @@ public class TreePointer : MonoBehaviour
                     pointerLine.SetPosition(1, hit.point);
                 }
 
-                isPointing = true;
             }
         }
         else
@@ -138,11 +136,10 @@ public class TreePointer : MonoBehaviour
                     oldTreeLifecycle.treeUnselected();
                     oldTreeLifecycle.birdChoseThisTree = false;
                 }
-
+                birdPath.ClearTargetTree(); // Clear target tree in bird path
                 pointedTree = null;
             }
 
-            isPointing = false;
 
             if (pointerLine != null)
             {

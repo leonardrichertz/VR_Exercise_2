@@ -3,6 +3,8 @@ using UnityEngine;
 public class BirdMovementH : MonoBehaviour
 {
 
+    // If the bird is faster, the game is easier
+    // If the bird is slower, the game is harder
     [SerializeField] float birdSpeed = 2f;
 
     Vector3 targetTreePosition;
@@ -11,9 +13,7 @@ public class BirdMovementH : MonoBehaviour
     TreeSpawner treeSpawner;
 
     private bool selectedTree;
-    private bool flyAroudTree;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (treeSpawner == null)
@@ -22,10 +22,12 @@ public class BirdMovementH : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+          if (targetTree != null)
+        {
+            MoveBirdToTree();
+        }
     }
 
     // New method to set the target tree from the pointer
@@ -44,22 +46,29 @@ public class BirdMovementH : MonoBehaviour
                 treeLifecycle.birdChoseThisTree = true;
                 MoveBirdToTree();
             }
-            
-            //birdHasTree = true;
-            //closeToTree = false;
         }
+    }
+
+    // Clear the selected tree.
+    public void ClearTargetTree()
+    {
+        targetTree = null;
+        targetTreePosition = Vector3.zero;
     }
 
     void MoveBirdToTree()
     {
-        if(Vector3.Distance(transform.position, targetTreePosition) >= 5)
+        // Move the bird towards the target tree, if it is not already close enough
+        if (Vector3.Distance(transform.position, targetTreePosition) >= 5)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetTreePosition, birdSpeed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetTreePosition, birdSpeed * Time.deltaTime);
             transform.LookAt(targetTreePosition);
         }
         else
         {
-            //closeToTree = true;
+            // Fly around the tree if we are close enough
+            transform.RotateAround(targetTreePosition, Vector3.up, birdSpeed * 5 * Time.deltaTime);
+            transform.LookAt(targetTreePosition);
         }
     }
 }
